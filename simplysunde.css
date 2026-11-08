@@ -1,0 +1,205 @@
+/* Simply Sunde UI v0.1: the brand theme for apps and sites.
+   Structure adapted from YoRHa by Ethan Chan (MIT, see LICENSE-yorha):
+   grid-paper background, side stripes, square markers, bar-fill buttons.
+   Colours are the Simply Sunde palette (brand/palette.html).
+
+   Use: put class="ss" on <html> (whole page) or on any container (one part
+   of an app). Styles only apply inside it. Apart from the page background,
+   text colour and font on .ss itself, every selector sits in :where(), so
+   the app's own CSS always wins without !important.
+   Theme follows the system; set data-theme="light" or "dark" on <html> to force one. */
+
+/* ---- tokens: the one place the brand's interface colours are set.
+   brand/palette.html reads them from here; change colours here only. */
+:root {
+  --ss-bg: #FFFFFF;      --ss-surface: #F5F5F5;  --ss-raised: #EBEBEB;
+  --ss-border: #D9D9D9;  --ss-text: #2A2A2A;     --ss-muted: #5E5E5E;
+  --ss-accent: #177566;  --ss-on-accent: #FFFFFF; --ss-accent-soft: #8FC9BC;
+  --ss-success: #37732A; --ss-success-soft: #EBF1EA;
+  --ss-warning: #8A5A12; --ss-warning-soft: #F3EFE7;
+  --ss-error: #B3323A;   --ss-error-soft: #F7EBEB;
+  --ss-info: #1F649E;    --ss-info-soft: #E9F0F5;
+  --ss-grid: #F2F2F2;
+  --ss-ink: #2A2A2A;     --ss-on-ink: #FFFFFF;   /* title bars, hover fill, highlight */
+  --ss-rule: #2A2A2A;    /* strong lines: H2, table head, square markers */
+  --ss-font-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --ss-font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --ss-font-mono: "JetBrains Mono", "DejaVu Sans Mono", ui-monospace, monospace;
+  --ss-cut: 10px;         /* the mitred corner on panels, after the angular mark */
+  --ss-speed: 0.2s;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ss-bg: #0F0F0F;      --ss-surface: #1A1A1A;  --ss-raised: #242424;
+  --ss-border: #333333;  --ss-text: #EDEDED;     --ss-muted: #A3A3A3;
+  --ss-accent: #3BB3A0;  --ss-on-accent: #0F0F0F; --ss-accent-soft: #246C61;
+  --ss-success: #7CC46A; --ss-success-soft: #1E281C;
+  --ss-warning: #E0A84A; --ss-warning-soft: #2C2417;
+  --ss-error: #E5676B;   --ss-error-soft: #2D1B1C;
+  --ss-info: #5AA9E6;    --ss-info-soft: #1A252D;
+  --ss-grid: #131313;
+  --ss-ink: #333333;     --ss-on-ink: #EDEDED;
+  --ss-rule: #5E5E5E;
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --ss-bg: #0F0F0F;      --ss-surface: #1A1A1A;  --ss-raised: #242424;
+  --ss-border: #333333;  --ss-text: #EDEDED;     --ss-muted: #A3A3A3;
+  --ss-accent: #3BB3A0;  --ss-on-accent: #0F0F0F; --ss-accent-soft: #246C61;
+  --ss-success: #7CC46A; --ss-success-soft: #1E281C;
+  --ss-warning: #E0A84A; --ss-warning-soft: #2C2417;
+  --ss-error: #E5676B;   --ss-error-soft: #2D1B1C;
+  --ss-info: #5AA9E6;    --ss-info-soft: #1A252D;
+  --ss-grid: #131313;
+  --ss-ink: #333333;     --ss-on-ink: #EDEDED;
+  --ss-rule: #5E5E5E;
+  color-scheme: dark;
+}
+
+/* ---- page. The .ss element itself has normal class weight, so a reset's
+   plain body {} rule can't paint over the theme; with .ss on <html>, body
+   turns transparent and inherits. Everything inside stays in :where(). */
+.ss {
+  background-color: var(--ss-bg);
+  background-size: 0.3rem 0.3rem;
+  background-image: linear-gradient(to right, var(--ss-grid) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--ss-grid) 1px, transparent 1px);
+  color: var(--ss-text);
+  font: 400 1rem/1.6 var(--ss-font-body);
+  letter-spacing: 0.01em;
+}
+html.ss > body { background: transparent; color: inherit; font: inherit; letter-spacing: inherit }
+:where(.ss) *, :where(.ss) *::before, :where(.ss) *::after { box-sizing: border-box }
+:where(.ss) ::selection { background-color: var(--ss-accent-soft); color: var(--ss-text) }
+:where(.ss) :focus-visible { outline: 2px solid var(--ss-accent); outline-offset: 2px }
+
+/* ---- text */
+:where(.ss) :where(p) { margin: 0 0 1rem }
+:where(.ss) :where(a) { color: var(--ss-accent); text-underline-offset: 0.2em }
+:where(.ss) :where(a:hover) { text-decoration-thickness: 2px }
+:where(.ss) :where(mark) { background-color: var(--ss-ink); color: var(--ss-on-ink); padding: 0 0.2em }
+:where(.ss) :where(h1, h2, h3, h4, h5, h6) { font-family: var(--ss-font-display); font-weight: 500; line-height: 1.2; margin: 1.5rem 0 0.75rem }
+:where(.ss) :where(h1) { font-size: 2.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; text-shadow: 0.2em 0.2em 0 var(--ss-border) }
+:where(.ss) :where(h2) { font-size: 1.5rem; border: solid var(--ss-rule); border-width: 1px 0; padding: 0.15rem 1rem }
+:where(.ss) :where(h3, h4, h5, h6) { letter-spacing: 0.06em }
+:where(.ss) :where(h3) { font-size: 1.2rem }
+:where(.ss) :where(small, figcaption small) { color: var(--ss-muted) }
+:where(.ss) :where(hr) { margin: 1.5rem 0; border: 0; border-top: 1px solid var(--ss-border) }
+:where(.ss) :where(code, kbd, samp, pre) { font-family: var(--ss-font-mono); font-size: 0.9em }
+:where(.ss) :where(code) { background: var(--ss-raised); padding: 0.1em 0.35em }
+:where(.ss) :where(kbd) { border: 1px solid var(--ss-border); border-bottom-width: 2px; padding: 0 0.35em }
+:where(.ss) :where(pre) { background-color: var(--ss-surface); border-left: 2px solid var(--ss-border); padding: 1rem; overflow-x: auto }
+:where(.ss) :where(pre code) { background: none; padding: 0 }
+
+/* side stripes: one thick, one thin, left of the block */
+:where(.ss) :where(blockquote) { position: relative; margin: 1rem 0 1rem 1.5rem; padding: 0.5rem 0.75rem; color: var(--ss-muted) }
+:where(.ss) :where(blockquote)::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -1.25rem; width: 0.3rem;
+  border: solid var(--ss-border); border-width: 0 0.2rem 0 0.6rem;
+}
+/* square markers */
+:where(.ss) :where(cite) { position: relative; padding-left: 1.4rem; font-style: normal }
+:where(.ss) :where(cite)::before { content: ""; position: absolute; left: 0; top: 0.45em; width: 0.6rem; height: 0.6rem; background: var(--ss-rule) }
+:where(.ss) :where(ul) { list-style: square; padding-left: 1.4rem }
+:where(.ss) :where(ul li)::marker { color: var(--ss-muted) }
+
+/* ---- tables */
+:where(.ss) :where(table) { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums }
+:where(.ss) :where(th, td) { padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid var(--ss-border) }
+:where(.ss) :where(th) { font: 500 0.8rem var(--ss-font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ss-muted); border-bottom: 1px solid var(--ss-rule) }
+:where(.ss) :where(tbody tr:hover) { background: var(--ss-surface) }
+
+/* ---- panels: YoRHa's figure with its dark title bar, with the mitred corners */
+:where(.ss) :where(figure, .ss-panel) {
+  margin: 0 0 1rem; padding: 0.75rem; background: var(--ss-surface);
+  display: flex; flex-direction: column; gap: 0.5rem;
+  clip-path: polygon(0 0, calc(100% - var(--ss-cut)) 0, 100% var(--ss-cut), 100% 100%, var(--ss-cut) 100%, 0 calc(100% - var(--ss-cut)));
+}
+:where(.ss) :where(figure > figcaption, .ss-panel > .ss-title) {
+  order: -1; margin: -0.75rem -0.75rem 0.25rem; padding: 0.4rem 1rem;
+  background: var(--ss-ink); color: var(--ss-on-ink);
+  font: 500 1rem var(--ss-font-display); letter-spacing: 0.06em;
+}
+:where(.ss) :where(figure > :not(figcaption), .ss-panel > :not(.ss-title)) { margin: 0 }
+
+/* ---- forms */
+:where(.ss) :where(fieldset) { border: 1px solid var(--ss-border); padding: 0.5rem 1rem 1rem; margin: 0 0 1rem }
+:where(.ss) :where(legend) { padding: 0 0.5rem; font-family: var(--ss-font-display); letter-spacing: 0.06em }
+:where(.ss) :where(label) { display: inline-block; margin: 0.5rem 0 0.25rem }
+:where(.ss) :where(input:not([type=checkbox], [type=radio], [type=range], [type=submit], [type=button], [type=reset], [type=file]), select, textarea) {
+  padding: 0.5rem 0.6rem; font: inherit; letter-spacing: inherit; color: inherit;
+  background-color: var(--ss-raised); border: 0; border-bottom: 1px solid var(--ss-border); border-radius: 0;
+  appearance: none; transition: border-color var(--ss-speed), box-shadow var(--ss-speed);
+}
+:where(.ss) :where(input, select, textarea):focus-visible { outline: none; border-bottom-color: var(--ss-accent); box-shadow: 0 1px 0 var(--ss-accent) }
+:where(.ss) :where(select) {
+  padding-right: 2rem; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ss-text) 50%), linear-gradient(-45deg, transparent 50%, var(--ss-text) 50%);
+  background-size: 5px 5px, 5px 5px; background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%; background-repeat: no-repeat;
+}
+:where(.ss) :where(::placeholder) { color: var(--ss-muted); opacity: 1 }
+:where(.ss) :where(input[type=checkbox], input[type=radio], input[type=range], progress) { accent-color: var(--ss-accent) }
+:where(.ss) :where(progress) { width: 100%; height: 0.5rem }
+
+/* ---- buttons: a bar fills in from the left on hover, with lines above and below */
+:where(.ss) :where(button, .ss-button, input[type=submit], input[type=button], input[type=reset]) {
+  position: relative; z-index: 0; display: inline-block; cursor: pointer;
+  padding: 0.5rem 1rem; border: 1px solid var(--ss-border); border-radius: 0;
+  font: 500 0.95rem var(--ss-font-body); letter-spacing: 0.03em; text-decoration: none;
+  background-color: var(--ss-raised); color: var(--ss-text);
+  transition: color var(--ss-speed), background-color var(--ss-speed);
+}
+:where(.ss) :where(button, .ss-button)::before, :where(.ss) :where(button, .ss-button)::after {
+  content: ""; position: absolute; transition: all var(--ss-speed) ease-out;
+}
+:where(.ss) :where(button, .ss-button)::before { inset: -1px; border: solid transparent; border-width: 1px 0 }
+:where(.ss) :where(button, .ss-button)::after { top: 0; bottom: 0; left: 0; width: 0; background: var(--ss-ink); z-index: -1 }
+:where(.ss) :where(button, .ss-button):where(:hover, :focus-visible):not(:disabled) { background-color: transparent; color: var(--ss-on-ink) }
+:where(.ss) :where(button, .ss-button):where(:hover, :focus-visible):not(:disabled)::before { top: -0.3rem; bottom: -0.3rem; border-color: var(--ss-rule) }
+:where(.ss) :where(button, .ss-button):where(:hover, :focus-visible):not(:disabled)::after { width: 100% }
+:where(.ss) :where(button, .ss-button):active:not(:disabled) { color: var(--ss-text) }
+:where(.ss) :where(button, .ss-button):active:not(:disabled)::after { background: var(--ss-raised) }
+:where(.ss) :where(input[type=submit], input[type=button], input[type=reset]):hover { background-color: var(--ss-ink); color: var(--ss-on-ink) }
+/* the one primary action: glacial */
+:where(.ss) :where(.ss-primary) { background-color: var(--ss-accent); border-color: var(--ss-accent); color: var(--ss-on-accent) }
+:where(.ss) :where(.ss-primary):where(:hover, :focus-visible):not(:disabled)::before { border-color: var(--ss-accent) }
+/* destructive */
+:where(.ss) :where(.ss-danger) { background-color: var(--ss-error-soft); border-color: var(--ss-error-soft); color: var(--ss-error) }
+:where(.ss) :where(.ss-danger)::after { background: var(--ss-error) }
+:where(.ss) :where(.ss-danger):where(:hover, :focus-visible):not(:disabled) { color: var(--ss-bg) }
+:where(.ss) :where(.ss-danger):where(:hover, :focus-visible):not(:disabled)::before { border-color: var(--ss-error) }
+:where(.ss) :where(button, .ss-button, input):disabled { background-color: var(--ss-surface); border-color: var(--ss-surface); color: var(--ss-muted); cursor: not-allowed }
+
+/* ---- status: soft box with side stripes in the status colour; always with a word, never colour alone */
+:where(.ss) :where(.ss-alert) {
+  position: relative; margin: 0 0 1rem 1.25rem; padding: 0.6rem 0.9rem;
+  background: var(--ss-raised); --ss-tone: var(--ss-muted);
+}
+:where(.ss) :where(.ss-alert)::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -1.15rem; width: 0.3rem;
+  border: solid var(--ss-tone); border-width: 0 0.2rem 0 0.5rem;
+}
+:where(.ss) :where(.ss-alert > strong:first-child) { color: var(--ss-tone); font-family: var(--ss-font-display); letter-spacing: 0.04em; margin-right: 0.4rem }
+:where(.ss) :where(.ss-alert.success) { background: var(--ss-success-soft); --ss-tone: var(--ss-success) }
+:where(.ss) :where(.ss-alert.warning) { background: var(--ss-warning-soft); --ss-tone: var(--ss-warning) }
+:where(.ss) :where(.ss-alert.error) { background: var(--ss-error-soft); --ss-tone: var(--ss-error) }
+:where(.ss) :where(.ss-alert.info) { background: var(--ss-info-soft); --ss-tone: var(--ss-info) }
+
+/* tag / badge: square marker and mono text */
+:where(.ss) :where(.ss-tag) {
+  display: inline-flex; align-items: center; gap: 0.4em; padding: 0.1em 0.6em;
+  font: 500 0.75rem var(--ss-font-mono); letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--ss-border); color: var(--ss-muted);
+}
+:where(.ss) :where(.ss-tag)::before { content: ""; width: 0.45em; height: 0.45em; background: currentColor }
+:where(.ss) :where(.ss-tag.accent) { color: var(--ss-accent); border-color: var(--ss-accent-soft) }
+:where(.ss) :where(.ss-tag.success) { color: var(--ss-success) } :where(.ss) :where(.ss-tag.warning) { color: var(--ss-warning) }
+:where(.ss) :where(.ss-tag.error) { color: var(--ss-error) }     :where(.ss) :where(.ss-tag.info) { color: var(--ss-info) }
+
+/* ---- details */
+:where(.ss) :where(details) { border-left: 2px solid var(--ss-border); padding: 0.25rem 0 0.25rem 0.9rem; margin: 0 0 1rem }
+:where(.ss) :where(summary) { cursor: pointer; font-family: var(--ss-font-display); letter-spacing: 0.04em; list-style: none; position: relative; padding-left: 1.1rem }
+:where(.ss) :where(summary)::-webkit-details-marker { display: none }
+:where(.ss) :where(summary)::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.5rem; height: 0.5rem; background: var(--ss-muted); transition: transform var(--ss-speed) }
+:where(.ss) :where(details[open] > summary)::before { background: var(--ss-accent); transform: rotate(45deg) }
+
+@media (prefers-reduced-motion: reduce) { :where(.ss) *, :where(.ss) *::before, :where(.ss) *::after { transition: none !important } }
