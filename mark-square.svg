@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512" role="img" aria-label="Simply Sunde">
+  <title>Simply Sunde</title>
+  <defs>
+    <linearGradient id="plate" x1="0.1" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#3C3C3C"/>
+      <stop offset="1" stop-color="#141414"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#F0F0F0"/>
+      <stop offset="0.4" stop-color="#BEBEBE"/>
+      <stop offset="1" stop-color="#7A7A7A"/>
+    </linearGradient>
+    <clipPath id="clip"><rect width="100" height="100" rx="9"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="100" height="100" fill="url(#plate)"/>
+    <path d="M-10,52 L52,-10 L60,-10 L-10,60 Z M-10,64 L64,-10 L66,-10 L-10,66 Z" fill="#444444" opacity="0.6"/>
+    <g fill="none">
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#000000" stroke-width="27" stroke-linejoin="miter" stroke-miterlimit="8" transform="translate(3 3)"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#0B0B0B" stroke-width="27" stroke-linejoin="miter" stroke-miterlimit="8"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#7A7A7A" stroke-width="23" stroke-linejoin="miter" stroke-miterlimit="8" transform="translate(0 0.9)"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#F0F0F0" stroke-width="23" stroke-linejoin="miter" stroke-miterlimit="8" transform="translate(0 -0.9)"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="url(#gold)" stroke-width="21.4" stroke-linejoin="miter" stroke-miterlimit="8"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#0B0B0B" stroke-width="17" stroke-linejoin="miter" stroke-miterlimit="8"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#246C61" stroke-width="12" stroke-linejoin="miter" stroke-miterlimit="8" transform="translate(0 0.7)"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#46D4BD" stroke-width="12" stroke-linejoin="miter" stroke-miterlimit="8" transform="translate(0 -0.7)"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#36A593" stroke-width="10.6" stroke-linejoin="miter" stroke-miterlimit="8"/>
+      <path d="M50,-10 L50,8 L28,30 L28,36 L72,58 L72,64 L50,86 L50,110" stroke="#FAFAFA" stroke-width="5" stroke-linejoin="miter" stroke-miterlimit="8"/>
+    </g>
+  </g>
+  <rect x="1.6" y="1.6" width="96.8" height="96.8" rx="7.6" fill="none" stroke="url(#gold)" stroke-width="3.2"/><rect x="3.65" y="3.65" width="92.7" height="92.7" rx="5.6" fill="none" stroke="#0B0B0B" stroke-width="0.9"/>
+</svg>
