@@ -28,18 +28,8 @@
   .bar .icon::before, .bar .icon::after { display: none }
   .bar .support { display: flex; align-items: center; padding: 0 20px; background: var(--ss-ink); color: var(--ss-on-ink) !important }
 
-  /* ruler down the right edge */
-  .ruler { position: absolute; top: 52px; right: 0; bottom: 0; width: 28px; border-left: 1px solid var(--ss-border); pointer-events: none;
-    background: repeating-linear-gradient(to bottom, var(--ss-muted) 0 1px, transparent 1px 24px) right top / 8px 100% no-repeat,
-                repeating-linear-gradient(to bottom, var(--ss-rule) 0 1px, transparent 1px 120px) right top / 16px 100% no-repeat }
-  .page { margin-right: 28px }
-
   /* hero */
   .hero { position: relative; padding: 96px 24px 88px; text-align: center }
-  .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: repeating-radial-gradient(circle at 50% 45%, transparent 0 71px, var(--ss-border) 71px 72px);
-    -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 25%, transparent 70%); mask-image: radial-gradient(circle at 50% 45%, #000 25%, transparent 70%) }
-  .hero > * { position: relative }
   .hero .name { display: flex; align-items: center; justify-content: center; gap: 0.4em; flex-wrap: wrap; margin: 0 0 32px; font-size: clamp(2.4rem, 8vw, 6.5rem); letter-spacing: 0.08em; line-height: 1; text-shadow: 0.05em 0.05em 0 var(--ss-border) }
   .hero .name img { width: 1.15em; height: 1.15em }
   .hero .verse { font-size: 1.15rem; margin: 0 auto 1.4rem; max-width: 34rem }
@@ -69,7 +59,6 @@
     .hero { padding: 64px 16px }
     .hero .verse { font-size: 1rem }
     .hero code { font-size: 0.8em }
-    .ruler { display: none } .page { margin-right: 0 }
   }
 </style>
 </head>
@@ -90,7 +79,6 @@
     <a class="support" href="https://ko-fi.com/simplysunde">Support</a>
   </div>
 </header>
-<div class="ruler" aria-hidden="true"></div>
 
 <div class="page">
   <main>
