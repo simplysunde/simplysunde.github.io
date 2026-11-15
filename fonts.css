@@ -1,4 +1,6 @@
-/* The site's fonts, Latin characters only (covers æ, ø, å).
+/* Simply Sunde UI fonts: the three named in simplysunde.css, self-hosted.
+   Load this before simplysunde.css, and keep the fonts/ folder beside it.
+   Latin characters only (covers æ, ø, å).
    All three are under the SIL Open Font License 1.1: see fonts/OFL-*.txt.
    Plex Sans and JetBrains Mono are variable fonts: one file, every weight. */
 @font-face { font-family: "Chakra Petch"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/chakra-petch-500.woff2) format("woff2") }
