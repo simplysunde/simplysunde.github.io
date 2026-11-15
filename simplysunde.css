@@ -1,4 +1,4 @@
-/* Simply Sunde UI v0.1: the brand theme for apps and sites.
+/* Simply Sunde UI v0.2: the brand theme for apps and sites.
    Structure adapted from YoRHa by Ethan Chan (MIT, see LICENSE-yorha):
    grid-paper background, side stripes, square markers, bar-fill buttons.
    Colours are the Simply Sunde palette (brand/palette.html).
@@ -108,16 +108,21 @@ html.ss > body { background: transparent; color: inherit; font: inherit; letter-
 :where(.ss) :where(th) { font: 500 0.8rem var(--ss-font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ss-muted); border-bottom: 1px solid var(--ss-rule) }
 :where(.ss) :where(tbody tr:hover) { background: var(--ss-surface) }
 
-/* ---- panels: YoRHa's figure with its dark title bar, with the mitred corners */
+/* ---- panels: YoRHa's figure with its dark title bar, with the mitred corners.
+   The corners are a bevelled border, not a clip, so menus and dialogs inside
+   a panel aren't cut off. Square where corner-shape isn't supported. */
 :where(.ss) :where(figure, .ss-panel) {
   margin: 0 0 1rem; padding: 0.75rem; background: var(--ss-surface);
   display: flex; flex-direction: column; gap: 0.5rem;
-  clip-path: polygon(0 0, calc(100% - var(--ss-cut)) 0, 100% var(--ss-cut), 100% 100%, var(--ss-cut) 100%, 0 calc(100% - var(--ss-cut)));
 }
 :where(.ss) :where(figure > figcaption, .ss-panel > .ss-title) {
   order: -1; margin: -0.75rem -0.75rem 0.25rem; padding: 0.4rem 1rem;
   background: var(--ss-ink); color: var(--ss-on-ink);
   font: 500 1rem var(--ss-font-display); letter-spacing: 0.06em;
+}
+@supports (corner-shape: bevel) {
+  :where(.ss) :where(figure, .ss-panel) { border-radius: 0 var(--ss-cut); corner-shape: bevel }
+  :where(.ss) :where(figure > figcaption, .ss-panel > .ss-title) { border-top-right-radius: var(--ss-cut); corner-shape: bevel }
 }
 :where(.ss) :where(figure > :not(figcaption), .ss-panel > :not(.ss-title)) { margin: 0 }
 
