@@ -64,12 +64,18 @@
   .section-bar b { font-weight: 500; color: var(--ss-text) }
   .section { padding: 56px 48px 72px }
   .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px }
-  .projects .ss-panel { min-height: 180px }
-  .projects .ss-title { display: flex; justify-content: space-between; gap: 8px }
-  .projects .ss-title span { font: 400 0.8rem var(--ss-font-mono) }
-  .projects .about { display: flex; gap: 12px; align-items: flex-start }
-  .projects .about img { flex: none }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto !important }
+  /* a project panel: number and kind in the title bar, then icon and name,
+     what it is, tags, and the link; the Projects page adds a screenshot */
+  .projects .ss-panel { gap: 14px; min-height: 180px; margin: 0 }
+  .projects .ss-title { display: flex; justify-content: space-between; gap: 8px; text-decoration: none }
+  .projects .ss-title span { font: 400 0.75rem var(--ss-font-mono); letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8 }
+  .projects .top { display: flex; align-items: center; gap: 16px }
+  .projects .top img { flex: none }
+  .projects h3 { margin: 0; font: 600 1.9rem/1.1 var(--ss-font-display); letter-spacing: 0.04em }
+  .projects .desc { color: var(--ss-muted) }
+  .projects .go { color: var(--ss-text); text-decoration: none }
+  .projects .go:is(:hover, :focus-visible) { color: var(--ss-accent) }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto !important }   /* tags and link sit at the bottom */
   .empty { display: flex; align-items: center; justify-content: center; min-height: 180px; padding: 24px; border: 1px dashed var(--ss-border); color: var(--ss-muted); text-align: center }
 
   footer { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 32px 48px; border-top: 1px solid var(--ss-rule) }
@@ -135,15 +141,19 @@
         <!-- One panel per project, newest first. Same list as the profile README.
              No version number: the repo always shows the latest release.
         <article class="ss-panel">
-          <a class="ss-title" href="REPO_URL">NAME</a>
-          <div class="about"><img src="projects/NAME.svg" width="48" height="48" alt=""><p>ONE_LINE_DESCRIPTION</p></div>
+          <a class="ss-title" href="REPO_URL">NN <span>WHAT_IT_IS</span></a>
+          <div class="top"><img src="projects/NAME.svg" width="72" height="72" alt=""><h3>NAME</h3></div>
+          <p class="desc">ONE_LINE_DESCRIPTION</p>
           <p class="tags"><span class="ss-tag accent">TYPE</span><span class="ss-tag">FREE</span></p>
+          <a class="go mono" href="REPO_URL">Open on GitHub ↗</a>
         </article>
         -->
         <article class="ss-panel">
-          <a class="ss-title" href="https://github.com/simplysunde/loskai">Loskai</a>
-          <div class="about"><img src="projects/loskai.svg" width="48" height="48" alt=""><p>A control panel for your homelab, in one container: an HTTPS name for every service, your Docker stacks, apps from recipes, and your machines over SSH.</p></div>
-          <p class="tags"><span class="ss-tag accent">PROGRAM</span><span class="ss-tag">FREE</span></p>
+          <a class="ss-title" href="https://github.com/simplysunde/loskai">01 <span>Homelab control panel</span></a>
+          <div class="top"><img src="projects/loskai.svg" width="72" height="72" alt=""><h3>Loskai</h3></div>
+          <p class="desc">A control panel for your homelab, in one container: an HTTPS name for every service, your Docker stacks, apps from recipes, and your machines over SSH.</p>
+          <p class="tags"><span class="ss-tag accent">Program</span><span class="ss-tag">Free</span><span class="ss-tag">Docker</span><span class="ss-tag">Linux</span></p>
+          <a class="go mono" href="https://github.com/simplysunde/loskai">Open on GitHub ↗</a>
         </article>
       </div>
     </section>
