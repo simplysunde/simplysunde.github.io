@@ -10,36 +10,9 @@
 <link rel="preload" href="fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="simplysunde.css">
+<link rel="stylesheet" href="site.css">
 <style>
-  /* site layout; colours and parts come from simplysunde.css */
-  body { margin: 0; position: relative; overflow-x: hidden }
-  .mono { font-family: var(--ss-font-mono); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase }
-
-  /* top bar, after the YoRHa menu: tabs standing on a rule, the open one in full
-     contrast and joined to it; hover fills a tab in from the left */
-  .bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: stretch; height: 46px; background: var(--ss-bg); border-bottom: 2px solid var(--ss-rule) }
-  .bar > * { display: flex; align-items: center }
-  .bar .home { padding: 0 14px; border-right: 1px solid var(--ss-border) }
-  .bar a, .bar button { color: inherit; text-decoration: none }
-
-  .tabs { flex: 1; align-items: flex-end; gap: 6px; padding: 0 16px }
-  .tabs a { position: relative; z-index: 0; display: flex; align-items: center; height: 26px; margin-bottom: 7px; padding: 0 calc(10px - 0.1em) 0 10px;   /* letter spacing adds room after the last letter */
-    background: var(--ss-raised); font: 500 0.85rem var(--ss-font-display); letter-spacing: 0.1em; text-transform: uppercase; transition: color var(--ss-speed) }
-  .tabs a::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 0; z-index: -1; background: var(--ss-text); transition: width var(--ss-speed) ease-out }
-  .tabs a:is(:hover, :focus-visible) { color: var(--ss-bg) }
-  .tabs a:is(:hover, :focus-visible)::after { width: 100% }
-  .tabs a[aria-current] { height: 33px; margin-bottom: 0; background: var(--ss-text); color: var(--ss-bg) }
-
-  .bar .end { align-items: stretch }
-  .bar .icon { display: flex; align-items: center; justify-content: center; width: 44px; border: 0; border-left: 1px solid var(--ss-border); background: none; padding: 0; cursor: pointer; transition: background-color var(--ss-speed) }
-  .bar .icon::before, .bar .icon::after { display: none }
-  .bar .icon svg { transition: fill var(--ss-speed) }
-  .bar .icon:is(:hover, :focus-visible) { background: var(--ss-surface) }
-  .bar .icon:is(:hover, :focus-visible) svg { fill: currentColor }
-  .bar .support { display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--ss-ink); color: var(--ss-on-ink) !important }
-  .bar .support svg { position: relative; top: -1px; transition: fill var(--ss-speed) }   /* level with the capitals */
-  .bar .support:is(:hover, :focus-visible) svg { fill: currentColor }
-
+  /* the home page's hero; the shared layout is in site.css */
   /* hero */
   .hero { position: relative; padding: 96px 24px 88px; text-align: center }
   .hero .name { display: flex; align-items: center; justify-content: center; gap: 0.4em; flex-wrap: wrap; margin: 0 0 32px; font-size: clamp(2.4rem, 8vw, 6.5rem); letter-spacing: 0.08em; line-height: 1; text-shadow: 0.05em 0.05em 0 var(--ss-border) }
@@ -57,38 +30,7 @@
   .water .a { fill: var(--ss-accent-soft) }
   .water .g { fill: var(--ss-border) }
   .water text { fill: var(--ss-border); font: 11px var(--ss-font-mono) }
-
-  /* numbered section bar */
-  #projects { scroll-margin-top: 54px }   /* stop below the pinned top bar */
-  .section-bar { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 12px 48px; border-top: 1px solid var(--ss-border); border-bottom: 1px solid var(--ss-border); color: var(--ss-muted) }
-  .section-bar b { font-weight: 500; color: var(--ss-text) }
-  .section { padding: 56px 48px 72px }
-  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px }
-  /* a project panel: number and kind in the title bar, then icon and name,
-     what it is, tags, and the link; the Projects page adds a screenshot */
-  .projects .ss-panel { gap: 14px; min-height: 180px; margin: 0 }
-  .projects .ss-title { display: flex; justify-content: space-between; gap: 8px; text-decoration: none }
-  .projects .ss-title span { font: 400 0.75rem var(--ss-font-mono); letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8 }
-  .projects .top { display: flex; align-items: center; gap: 16px }
-  .projects .top img { flex: none }
-  .projects h3 { margin: 0; font: 600 1.9rem/1.1 var(--ss-font-display); letter-spacing: 0.04em }
-  .projects .desc { color: var(--ss-muted) }
-  .projects .go { color: var(--ss-text); text-decoration: none }
-  .projects .go:is(:hover, :focus-visible) { color: var(--ss-accent) }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto !important }   /* tags and link sit at the bottom */
-  .empty { display: flex; align-items: center; justify-content: center; min-height: 180px; padding: 24px; border: 1px dashed var(--ss-border); color: var(--ss-muted); text-align: center }
-
-  footer { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 32px 48px; border-top: 1px solid var(--ss-rule) }
-  footer nav { display: flex; gap: 20px; flex-wrap: wrap }
-  footer .mono { width: 100%; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--ss-border); color: var(--ss-muted) }
-
-  code { white-space: pre-wrap }
   @media (max-width: 640px) {
-    .tabs { padding: 0 10px }
-    .tabs a[href="/"] { display: none }   /* the logo already goes home */
-    .bar .home { padding: 0 12px }
-    .bar .support { padding: 0 14px }
-    .section-bar, .section, footer { padding-left: 16px; padding-right: 16px }
     .hero { padding: 64px 16px }
     .hero .verse { font-size: 1rem }
     .hero code { font-size: 0.8em }
@@ -99,8 +41,8 @@
 <header class="bar">
   <a class="home" href="/" aria-label="Simply Sunde home"><img src="mark-square.svg" alt="" width="26" height="26"></a>
   <nav class="tabs" aria-label="Main">
-    <a href="/" aria-current="page">Home</a>
-    <a href="#projects">Projects</a>
+    <a class="to-home" href="/" aria-current="page">Home</a>
+    <a href="projects/">Projects</a>
   </nav>
   <div class="end">
     <a class="icon" href="https://github.com/simplysunde" aria-label="GitHub">
@@ -129,22 +71,24 @@
         <code>if helpful: tip()  # no strings attached</code>
       </p>
       <div class="actions">
-        <a class="ss-button ss-primary mono" href="#projects">Projects</a>
+        <a class="ss-button ss-primary mono" href="projects/">Projects</a>
         <a class="ss-button mono" href="https://ko-fi.com/simplysunde">Support on Ko-fi</a>
       </div>
       <p class="note mono">Made in Norway</p>
     </section>
 
-    <div class="section-bar mono" id="projects"><span>01 / <b>Projects</b></span><span>Newest first</span></div>
+    <div class="section-bar mono" id="latest"><span>01 / <b>Latest</b></span><a href="projects/">All projects →</a></div>
     <section class="section">
       <div class="projects">
-        <!-- One panel per project, newest first. Same list as the profile README.
-             No version number: the repo always shows the latest release.
+        <!-- The latest projects (or pinned ones), up to three, newest first; every
+             project is on projects/index.html. No version number: the repo
+             always shows the latest release. Tags: the type in accent, then a
+             few that narrow it down (Docker, Windows, Blender).
         <article class="ss-panel">
           <a class="ss-title" href="REPO_URL">NN <span>WHAT_IT_IS</span></a>
           <div class="top"><img src="projects/NAME.svg" width="72" height="72" alt=""><h3>NAME</h3></div>
           <p class="desc">ONE_LINE_DESCRIPTION</p>
-          <p class="tags"><span class="ss-tag accent">TYPE</span><span class="ss-tag">FREE</span></p>
+          <p class="tags"><span class="ss-tag accent">TYPE</span><span class="ss-tag">DETAIL</span></p>
           <a class="go mono" href="REPO_URL">Open on GitHub ↗</a>
         </article>
         -->
@@ -152,7 +96,7 @@
           <a class="ss-title" href="https://github.com/simplysunde/loskai">01 <span>Homelab control panel</span></a>
           <div class="top"><img src="projects/loskai.svg" width="72" height="72" alt=""><h3>Loskai</h3></div>
           <p class="desc">A control panel for your homelab, in one container: an HTTPS name for every service, your Docker stacks, apps from recipes, and your machines over SSH.</p>
-          <p class="tags"><span class="ss-tag accent">Program</span><span class="ss-tag">Free</span><span class="ss-tag">Docker</span><span class="ss-tag">Linux</span></p>
+          <p class="tags"><span class="ss-tag accent">Program</span><span class="ss-tag">Docker</span></p>
           <a class="go mono" href="https://github.com/simplysunde/loskai">Open on GitHub ↗</a>
         </article>
       </div>
@@ -169,16 +113,7 @@
   </footer>
 </div>
 
-<script>
-  // Theme follows the system; the button flips it for this visit and remembers it if it can.
-  const root = document.documentElement;
-  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t } catch (e) {}
-  document.getElementById('theme').addEventListener('click', () => {
-    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
-    try { localStorage.setItem('theme', root.dataset.theme) } catch (e) {}
-  });
-</script>
+<script src="site.js"></script>
 
 <script>
 (() => {

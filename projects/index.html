@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" class="ss">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects · Simply Sunde</title>
+<meta name="description" content="Everything Simply Sunde has released: programs, scripts, 3D and prints.">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/chakra-petch-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../simplysunde.css">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="bar">
+  <a class="home" href="../" aria-label="Simply Sunde home"><img src="../mark-square.svg" alt="" width="26" height="26"></a>
+  <nav class="tabs" aria-label="Main">
+    <a class="to-home" href="../">Home</a>
+    <a href="./" aria-current="page">Projects</a>
+  </nav>
+  <div class="end">
+    <a class="icon" href="https://github.com/simplysunde" aria-label="GitHub">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+    </a>
+    <button class="icon" type="button" id="theme" aria-label="Switch light and dark">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="support mono" href="https://ko-fi.com/simplysunde"><svg width="14" height="14" viewBox="0 0.5 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.6-8-10.4A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.6C20 15.4 12 20 12 20z"/></svg>Support</a>
+  </div>
+</header>
+
+<div class="page">
+  <main>
+    <div class="section-bar mono"><span>01 / <b>All projects</b></span><span>Newest first</span></div>
+    <section class="section">
+      <div class="projects">
+        <!-- Every project, newest first: the home page's card plus a screenshot
+             (projects/NAME.webp, 16:9, from what the project already shows publicly).
+        <article class="ss-panel shot">
+          <a class="ss-title" href="REPO_URL">NN <span>WHAT_IT_IS</span></a>
+          <img class="screen" src="NAME.webp" width="960" height="540" alt="NAME's SCREEN">
+          <div class="body">
+            <img class="badge" src="NAME.svg" width="80" height="80" alt="">
+            <h3>NAME</h3>
+            <p class="desc">ONE_LINE_DESCRIPTION</p>
+            <p class="tags"><span class="ss-tag accent">TYPE</span><span class="ss-tag">DETAIL</span></p>
+            <a class="go mono" href="REPO_URL">Open on GitHub ↗</a>
+          </div>
+        </article>
+        -->
+        <article class="ss-panel shot">
+          <a class="ss-title" href="https://github.com/simplysunde/loskai">01 <span>Homelab control panel</span></a>
+          <img class="screen" src="loskai.webp" width="960" height="540" alt="Loskai's Docker page: stacks with their uptime, CPU and memory">
+          <div class="body">
+            <img class="badge" src="loskai.svg" width="80" height="80" alt="">
+            <h3>Loskai</h3>
+            <p class="desc">A control panel for your homelab, in one container: an HTTPS name for every service, your Docker stacks, apps from recipes, and your machines over SSH.</p>
+            <p class="tags"><span class="ss-tag accent">Program</span><span class="ss-tag">Docker</span></p>
+            <a class="go mono" href="https://github.com/simplysunde/loskai">Open on GitHub ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="mailto:simplysunde@proton.me">simplysunde@proton.me</a>
+    <nav aria-label="Elsewhere">
+      <a href="https://github.com/simplysunde">GitHub</a>
+      <a href="https://ko-fi.com/simplysunde">Ko-fi</a>
+    </nav>
+    <div class="mono"><span>© 2026 Simply Sunde</span><span>Sund: Old Norse for strait</span></div>
+  </footer>
+</div>
+
+<script src="../site.js"></script>
+</body>
+</html>
